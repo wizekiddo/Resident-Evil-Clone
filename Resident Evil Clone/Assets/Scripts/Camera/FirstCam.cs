@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class FirstCam : MonoBehaviour
 {
-    public GameObject cameraOne;
-    public GameObject cameraTwo;
+    public GameObject cameraOn;
+    public GameObject cameraOff;
     public bool camOn;
     public int cameraNumber;
 
     void Start()
     {
         cameraNumber = 1;
-        StartCoroutine(CameraSwitch());
 
     }
+     void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player") {
+            cameraOn.SetActive(true);
+            cameraOff.SetActive(false);
 
-    IEnumerator CameraSwitch() {
-        yield return new WaitForSeconds(5);
-        cameraTwo.SetActive(true);
-        cameraOne.SetActive(false);
-        camOn = true;
-        cameraNumber = 2;
+        }
     }
+
 }
